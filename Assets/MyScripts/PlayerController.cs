@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        MenuManager.gameOver = true;
         moveSpeed = 0;
         acceleration = 0;
     }
