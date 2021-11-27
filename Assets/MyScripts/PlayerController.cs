@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour
     // Handle moving, jumping, sliding and turning
     void Update()
     {
+        if (!MenuManager.isGameStarted)
+        {
+            return;
+        }
         if (controller)
         {
             HandleJumping();
