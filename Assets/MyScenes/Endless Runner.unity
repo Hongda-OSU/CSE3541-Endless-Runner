@@ -7843,7 +7843,6 @@ GameObject:
   - component: {fileID: 575764561}
   - component: {fileID: 575764560}
   - component: {fileID: 575764559}
-  - component: {fileID: 575764558}
   m_Layer: 5
   m_Name: PasuingText
   m_TagString: Untagged
@@ -7870,18 +7869,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 212}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &575764558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575764556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &575764559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15030,7 +15017,6 @@ GameObject:
   - component: {fileID: 1135005975}
   - component: {fileID: 1135005974}
   - component: {fileID: 1135005973}
-  - component: {fileID: 1135005972}
   m_Layer: 5
   m_Name: TimeCounter
   m_TagString: Untagged
@@ -15038,18 +15024,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1135005972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135005971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1135005973
 MonoBehaviour:
   m_ObjectHideFlags: 0
