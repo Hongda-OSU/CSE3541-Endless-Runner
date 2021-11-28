@@ -1,4 +1,7 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -7,13 +10,17 @@ public class MenuManager : MonoBehaviour
     public GameObject startingText;
     public static bool isGameStarted;
     public static bool gameOver;
+    private bool isClicked;
     private Animator animator;
+    private TMPro.TextMeshProUGUI UIText;
+
     void Start()
     {
         gameOver = false;
         isGameStarted = false;
         gameOverPanel.SetActive(false);
         startingText.SetActive(true);
+        UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,5));
@@ -25,11 +32,25 @@ public class MenuManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isClicked)
         {
-            isGameStarted = true;
-            animator.SetBool("IsDance", false);
-            Destroy(startingText);
+            isClicked = true;
+            StartCoroutine(StartCountDown());
         }
     }
+
+    IEnumerator StartCountDown()
+    {
+        int counter = 3;
+        while (counter > 0)
+        {
+            UIText.SetText(counter.ToString());
+            yield return new WaitForSeconds(1);
+            counter--;
+        }
+        isGameStarted = true;
+        animator.SetBool("IsDance", false);
+        Destroy(startingText);
+    }
 }
+
