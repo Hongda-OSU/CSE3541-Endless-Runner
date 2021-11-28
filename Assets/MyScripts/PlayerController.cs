@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("UnityStuff")]
     private CharacterController controller;
-    private Animator animator;
+    public Animator animator;
     private PlayerInputs inputScheme;
     private Vector3 controllerCenter;
     private float controllerHeight;

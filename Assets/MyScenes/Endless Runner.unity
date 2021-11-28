@@ -12503,6 +12503,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 19176590}
+  speed: 3
+  acceleration: 0.06
+  maxFollowSpeed: 15
 --- !u!4 &964216863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 454224, guid: 015249c005381134e896458eb3ed0bb1, type: 3}
@@ -14108,6 +14111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95db99ad47e89894ba514b5fdcd9e524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 1423911265}
   gameOverPanel: {fileID: 1201707754}
   startingText: {fileID: 1835716659}
 --- !u!4 &1115790626
@@ -17974,6 +17978,7 @@ MonoBehaviour:
   slideDuration: 1
   newCenter: 0.35
   newHeight: 0.4
+  animator: {fileID: 0}
 --- !u!143 &1423911268
 CharacterController:
   m_ObjectHideFlags: 0
