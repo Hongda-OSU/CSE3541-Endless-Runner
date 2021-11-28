@@ -2094,7 +2094,7 @@ Transform:
   m_GameObject: {fileID: 149408369}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.02, y: 0, z: -4.5454545}
-  m_LocalScale: {x: 1, y: 1, z: 0.090909086}
+  m_LocalScale: {x: 0.75, y: 1, z: 0.090909086}
   m_Children:
   - {fileID: 1702336676}
   - {fileID: 510659359}
@@ -20441,6 +20441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553821527}
   - component: {fileID: 1553821526}
+  - component: {fileID: 1553821528}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -20464,6 +20465,8 @@ MonoBehaviour:
   rightBuilding: {fileID: 930227791}
   path: {fileID: 2005234233}
   character: {fileID: 1423911265}
+  count: 0
+  obstacleGenerator: {fileID: 1553821528}
 --- !u!4 &1553821527
 Transform:
   m_ObjectHideFlags: 0
@@ -20478,6 +20481,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1553821528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553821525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a745999b75cf7428f7bdb041cf3ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 2005234233}
+  buildingGenerator: {fileID: 1553821526}
 --- !u!1001 &1558159772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28708,7 +28725,7 @@ Transform:
   m_GameObject: {fileID: 2005234233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 12}
+  m_LocalScale: {x: 1.25, y: 1, z: 12}
   m_Children:
   - {fileID: 149408370}
   m_Father: {fileID: 0}

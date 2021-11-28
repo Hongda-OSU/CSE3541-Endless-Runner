@@ -9,7 +9,9 @@ public class BuildingGenerator : MonoBehaviour
     public GameObject path;
     public GameObject character;
 
-    private int count;
+    public int count;
+
+    public ObstacleGenerator obstacleGenerator;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,10 @@ public class BuildingGenerator : MonoBehaviour
         leftBuiilding.name="LeftBuilding count:"+count;
         rightBuilding.name="RightBuilding count:"+count;
         path.name="Path count:"+count;
+
+        foreach (Transform child in path.transform.GetChild(0).transform) {
+             GameObject.Destroy(child.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +33,7 @@ public class BuildingGenerator : MonoBehaviour
         if (character.transform.position.z > count * 120 + 30)
         {
             // increment counter until player gets to next position to spawn
-            count++;
+            count++;               
 
             // clone left and right buildings
             var newLeftBuilding=Instantiate(leftBuiilding, new Vector3(leftBuiilding.transform.position.x, 0,count * 120), leftBuiilding.transform.rotation);
@@ -38,7 +44,7 @@ public class BuildingGenerator : MonoBehaviour
             newRightBuilding.name="RightBuilding count:"+count;
           
             //if (count >= 2)
-            {
+            //{
                 // clone path
                 // var newPath=Instantiate(path, new Vector3(path.transform.position.x, 0, (count-1) * 110 + 150), path.transform.rotation);
                 var newPath=Instantiate(path, new Vector3(path.transform.position.x, 0, (count)*120+50), path.transform.rotation);
@@ -58,12 +64,16 @@ public class BuildingGenerator : MonoBehaviour
                 leftBuiilding=GameObject.Find("LeftBuilding count:"+(count-1));
                 rightBuilding=GameObject.Find("RightBuilding count:"+(count-1));
                 path=GameObject.Find("Path count:"+(count-1));
-            }
+            //}
             // else
             // {
             //     var newPath=Instantiate(path, new Vector3(path.transform.position.x, 0, count * 150), Quaternion.identity);
             //     newPath.name="Path count:"+count;
             // }
+
+            // spawn obstacles
+            obstacleGenerator.GenerateObstacle();      
+
         }
     }
 }
