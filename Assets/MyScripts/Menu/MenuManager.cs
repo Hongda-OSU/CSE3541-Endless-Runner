@@ -19,6 +19,9 @@ public class MenuManager : MonoBehaviour
     {
         gameOver = false;
         isGameStarted = false;
+        isGamePaused = false;
+        isPressed = false;
+        isClicked = false;
         gameOverPanel.SetActive(false);
         gamePauseMenu.SetActive(false);
         startingText.SetActive(true);
