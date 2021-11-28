@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour
         isGameStarted = false;
         gameOverPanel.SetActive(false);
         startingText.SetActive(true);
-        UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>();
+        UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,5));
@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour
         int counter = 3;
         while (counter > 0)
         {
-            UIText.SetText(counter.ToString());
+            UIText.SetText(counter.ToString()); // how to modify the text in TextMeshPro object
             yield return new WaitForSeconds(1);
             counter--;
         }
