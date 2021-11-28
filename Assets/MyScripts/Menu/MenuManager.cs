@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject character;
-    public GameObject gameOverPanel;
-    public GameObject startingText;
-    public static bool isGameStarted;
+    [SerializeField] public GameObject gameOverPanel;
+    [SerializeField] public GameObject startingText;
+    [SerializeField] public GameObject gamePauseMenu;
+    public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour
         gameOver = false;
         isGameStarted = false;
         gameOverPanel.SetActive(false);
+        gamePauseMenu.SetActive(false);
         startingText.SetActive(true);
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         animator = character.GetComponent<Animator>();
@@ -37,6 +39,20 @@ public class MenuManager : MonoBehaviour
             isClicked = true;
             StartCoroutine(StartCountDown());
         }
+        if (isGameStarted && !gameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab) && !isPressed)
+            {
+                Time.timeScale = 0;
+                isPressed = true;
+                isGamePaused = true;
+                gamePauseMenu.SetActive(true);
+            }
+        }
+        if(!isGamePaused)
+        {
+            gamePauseMenu.SetActive(false);
+        }
     }
 
     IEnumerator StartCountDown()
@@ -52,5 +68,6 @@ public class MenuManager : MonoBehaviour
         animator.SetBool("IsDance", false);
         Destroy(startingText);
     }
+
 }
 

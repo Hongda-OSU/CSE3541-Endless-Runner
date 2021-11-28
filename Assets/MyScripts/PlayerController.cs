@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [Header("UnityStuff")]
     private CharacterController controller;
     public Animator animator;
-    private PlayerInputs inputScheme;
+    public PlayerInputs inputScheme;
     private Vector3 controllerCenter;
     private float controllerHeight;
     private QuitHandler quitHandler;
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         inputScheme = new PlayerInputs();
+        quitHandler = new QuitHandler(inputScheme.Player.Quit);
         setUpJumpVariables();
     }
 
@@ -83,7 +84,6 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         inputScheme.Enable();
-        quitHandler = new QuitHandler(inputScheme.Player.Quit);
     }
 
     void OnDisable()
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
 
     private void Accelerate()
     {
-        if (maxSpeed <= maxSpeed)
+        if (moveSpeed <= maxSpeed)
         {
             moveSpeed += acceleration * Time.deltaTime;
         }
