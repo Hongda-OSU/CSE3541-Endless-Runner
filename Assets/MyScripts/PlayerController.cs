@@ -9,18 +9,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float acceleration = 0.05f;
     private Vector3 currentMovement;
 
-    [Header("Jumping")] 
+    [Header("Jumping")]
+    [SerializeField] private float maxJumpHeight = 3.2f;
+    [SerializeField] private float maxJumpTime = 1f;
+    [SerializeField] private float fallMultiplier = 2f;
     private float gravityValue = -9.81f; // not final gravity !
     private float groundGravity = -0.05f; // Ensure collider is grounded
     private float initialJumpVelocity;
-    [SerializeField] private float maxJumpHeight = 3.2f;
-    [SerializeField] private float maxJumpTime = 1f;
     private int jumpCount = 0;
-    [SerializeField] private float fallMultiplier = 2f;
 
     [Header("Turning")]
-    private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
     [SerializeField] private float trackDistance = 2.5f; //The distance between tracks
+    private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
 
     [Header("Sliding")]
     [SerializeField] private float slideDuration = 1f;
@@ -35,11 +35,23 @@ public class PlayerController : MonoBehaviour
 
     [Header("UnityStuff")]
     private CharacterController controller;
-    public Animator animator;
-    public PlayerInputs inputScheme;
+    private Animator animator;
+    private PlayerInputs inputScheme;
     private Vector3 controllerCenter;
     private float controllerHeight;
     private QuitHandler quitHandler;
+
+    void Awake()
+    {
+        inputScheme = new PlayerInputs();
+        quitHandler = new QuitHandler(inputScheme.Player.Quit);
+        setUpJumpVariables();
+    }
+
+    void OnEnable()
+    {
+        inputScheme.Enable();
+    }
 
     void Start()
     {
@@ -47,13 +59,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         controllerCenter = controller.center;
         controllerHeight = controller.height;
-    }
-
-    void Awake()
-    {
-        inputScheme = new PlayerInputs();
-        quitHandler = new QuitHandler(inputScheme.Player.Quit);
-        setUpJumpVariables();
     }
 
     // set up jump variables physically
@@ -78,7 +83,7 @@ public class PlayerController : MonoBehaviour
             HandleMovement();
             HandleTurning();
         }
-        //HandleFalling();
+        HandleFalling();
         controller.Move(currentMovement * Time.deltaTime);
         HandleGravity();
     }
@@ -89,16 +94,6 @@ public class PlayerController : MonoBehaviour
         {
             currentMovement.y = -15;
         }
-    }
-
-    void OnEnable()
-    {
-        inputScheme.Enable();
-    }
-
-    void OnDisable()
-    {
-        inputScheme.Disable();
     }
 
     // Accelerate and set the current movement direction (z)
