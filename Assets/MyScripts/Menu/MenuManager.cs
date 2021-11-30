@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
-        animator.SetInteger("danceCount", Random.Range(1,5));
+        animator.SetInteger("danceCount", Random.Range(1,6));
     }
 
     void Update()

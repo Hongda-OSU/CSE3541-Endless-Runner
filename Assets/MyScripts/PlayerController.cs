@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxJumpHeight = 3.2f;
     [SerializeField] private float maxJumpTime = 1f;
     private int jumpCount = 0;
+    private float fallMultiplier = 2f;
 
     [Header("Turning")]
     private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
@@ -121,7 +122,6 @@ public class PlayerController : MonoBehaviour
     private void HandleGravity()
     {
         bool isFalling = currentMovement.y <= 0.0f;
-        float fallMultiplier = 2f;
         if (controller.isGrounded)
         {
             animator.SetBool("IsJumping", false);
@@ -237,10 +237,6 @@ public class PlayerController : MonoBehaviour
             if (!isDying)
             {
                 Die();
-                dyingCount = Random.Range(1, 6);
-                animator.SetInteger("dyingCount", dyingCount);
-                animator.SetTrigger("IsDying");
-                isDying = true;
             }
         }
 
@@ -255,10 +251,6 @@ public class PlayerController : MonoBehaviour
                     if (!isDying)
                     {
                         Die();
-                        dyingCount = Random.Range(1, 6);
-                        animator.SetInteger("dyingCount", dyingCount);
-                        animator.SetTrigger("IsDying");
-                        isDying = true;
                     }
                 }
             }
@@ -272,10 +264,6 @@ public class PlayerController : MonoBehaviour
                         if (!isDying)
                         {
                             Die();
-                            dyingCount = Random.Range(1, 6);
-                            animator.SetInteger("dyingCount", dyingCount);
-                            animator.SetTrigger("IsDying");
-                            isDying = true;
                         }
                     }
                 }
@@ -290,16 +278,11 @@ public class PlayerController : MonoBehaviour
                         if (!isDying)
                         {
                             Die();
-                            dyingCount = Random.Range(1, 6);
-                            animator.SetInteger("dyingCount", dyingCount);
-                            animator.SetTrigger("IsDying");
-                            isDying = true;
                         }
                     }
                 }
             }
         }
-
     }
 
     private void Die()
@@ -307,5 +290,9 @@ public class PlayerController : MonoBehaviour
         MenuManager.gameOver = true;
         moveSpeed = 0;
         acceleration = 0;
+        dyingCount = Random.Range(1, 7);
+        animator.SetInteger("dyingCount", dyingCount);
+        animator.SetTrigger("IsDying");
+        isDying = true;
     }
 }
