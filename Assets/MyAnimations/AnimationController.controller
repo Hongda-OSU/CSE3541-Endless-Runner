@@ -15,7 +15,7 @@ AnimatorStateMachine:
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 2693378985104588122}
-    m_Position: {x: 660, y: -70, z: 0}
+    m_Position: {x: 560, y: -180, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 495059880361521800}
     m_Position: {x: 230, y: -70, z: 0}
@@ -913,6 +913,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: danceCount
     m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IsFalling
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

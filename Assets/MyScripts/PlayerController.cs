@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxJumpHeight = 3.2f;
     [SerializeField] private float maxJumpTime = 1f;
     private int jumpCount = 0;
-    private float fallMultiplier = 2f;
+    [SerializeField] private float fallMultiplier = 2f;
 
     [Header("Turning")]
     private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
@@ -78,8 +78,17 @@ public class PlayerController : MonoBehaviour
             HandleMovement();
             HandleTurning();
         }
+        //HandleFalling();
         controller.Move(currentMovement * Time.deltaTime);
         HandleGravity();
+    }
+
+    void HandleFalling()
+    {
+        if (!controller.isGrounded && inputScheme.Player.Slide.WasPressedThisFrame())
+        {
+            currentMovement.y = -15;
+        }
     }
 
     void OnEnable()
