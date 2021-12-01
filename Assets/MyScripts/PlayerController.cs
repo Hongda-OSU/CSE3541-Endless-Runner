@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
     // Handle collision
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.collider.tag == "Fence")
+        if (hit.collider.tag == "Obstacle")
         {
             if (!isDying)
             {

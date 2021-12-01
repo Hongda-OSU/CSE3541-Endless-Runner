@@ -9872,7 +9872,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9589906, y: 1}
+    m_SensorSize: {x: 2.0615141, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19178,6 +19178,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1201707754}
   startingText: {fileID: 1835716659}
   gamePauseMenu: {fileID: 44171197}
+  scoreText: {fileID: 358149336}
   mileText: {fileID: 620901314}
 --- !u!4 &1115790626
 Transform:
@@ -20496,7 +20497,10 @@ MonoBehaviour:
   - {fileID: 186458, guid: b19f549dd31179146b7a0e8f618ed835, type: 3}
   - {fileID: 186458, guid: 88fdb61ea8cd4d243b4af0442ae97ee0, type: 3}
   - {fileID: 186458, guid: 4909fb41eec7f434d80b9cd9c3a289ec, type: 3}
-  - {fileID: 186458, guid: 0c977ce9c936fd345b8d206614353a3e, type: 3}
+  - {fileID: 117208, guid: b27ed5aef45342f42b7fb0434f30318d, type: 3}
+  - {fileID: 190556, guid: 2a56de16a2082a34ba9ea844525e66f7, type: 3}
+  - {fileID: 118212, guid: 6ea48a22d6fa93e449dc4f4933e43711, type: 3}
+  - {fileID: 122224, guid: 5a3bb842b9dae844d8abde80e23c81ba, type: 3}
 --- !u!4 &1178775817
 Transform:
   m_ObjectHideFlags: 0

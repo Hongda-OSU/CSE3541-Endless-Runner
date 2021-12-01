@@ -95,17 +95,25 @@ public class TileGenerator : MonoBehaviour
         // random position between three lanes, 0 left 1 middile 2 right
         int ranLane = Random.Range(0, 3);
         // position to be generated
-        if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+        if (obstacle.gameObject.name.Contains("Truck") || obstacle.gameObject.name.Contains("Bus"))
         {
             genPos = new Vector3(-2.5f + ranLane * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+            // clone object from prefab file and assign it to newObject
+            obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
         }
-        else
+        else if(obstacle.gameObject.name.Contains("Car"))
         {
             genPos = new Vector3(-2.5f + ranLane * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+            // clone object from prefab file and assign it to newObject
+            obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
         }
-
-        // clone object from prefab file and assign it to newObject
-        obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+        else if(obstacle.gameObject.name.Contains("Obstacle"))
+        {
+            genPos = new Vector3(-2.5f + ranLane * 2.5f, 0, generationCount * 110 + i * 27.5f);
+            // clone object from prefab file and assign it to newObject
+            obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+        }
+      
         obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
     }
 
@@ -120,17 +128,24 @@ public class TileGenerator : MonoBehaviour
                 obstacleType = Random.Range(0, obstacleAmount);
                 GameObject obstacle = obstacles[obstacleType];
                 // position to be generated
-                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                if (obstacle.gameObject.name.Contains("Truck") || obstacle.gameObject.name.Contains("Bus"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-                else
+                else if (obstacle.gameObject.name.Contains("Car"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-
-                // clone object from prefab file and assign it to newObject
-                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                else if(obstacle.gameObject.name.Contains("Obstacle"))
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                }
                 obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
             }
         }
@@ -142,17 +157,24 @@ public class TileGenerator : MonoBehaviour
                 obstacleType = Random.Range(0, obstacleAmount);
                 GameObject obstacle = obstacles[obstacleType];
                 // position to be generated
-                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                if (obstacle.gameObject.name.Contains("Truck") || obstacle.gameObject.name.Contains("Bus"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-                else
+                else if (obstacle.gameObject.name.Contains("Car"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-
-                // clone object from prefab file and assign it to newObject
-                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                else if (obstacle.gameObject.name.Contains("Obstacle"))
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                }
                 obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
             }
         }
@@ -164,17 +186,24 @@ public class TileGenerator : MonoBehaviour
                 obstacleType = Random.Range(0, obstacleAmount);
                 GameObject obstacle = obstacles[obstacleType];
                 // position to be generated
-                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                if (obstacle.gameObject.name.Contains("Truck") || obstacle.gameObject.name.Contains("Bus"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-                else
+                else if (obstacle.gameObject.name.Contains("Car"))
                 {
                     genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
                 }
-
-                // clone object from prefab file and assign it to newObject
-                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                else if (obstacle.gameObject.name.Contains("Obstacle"))
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0, generationCount * 110 + i * 27.5f);
+                    // clone object from prefab file and assign it to newObject
+                    obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                }
                 obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
             }
         }
@@ -187,17 +216,24 @@ public class TileGenerator : MonoBehaviour
             obstacleType = Random.Range(0, obstacleAmount);
             GameObject obstacle = obstacles[obstacleType];
             // position to be generated
-            if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+            if (obstacle.gameObject.name.Contains("Truck") || obstacle.gameObject.name.Contains("Bus"))
             {
                 genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
             }
-            else
+            else if (obstacle.gameObject.name.Contains("Car"))
             {
                 genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
             }
-
-            // clone object from prefab file and assign it to newObject
-            obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+            else if (obstacle.gameObject.name.Contains("Obstacle"))
+            {
+                genPos = new Vector3(-2.5f + j * 2.5f, 0, generationCount * 110 + i * 27.5f);
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+            }
             obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
         }
     }
