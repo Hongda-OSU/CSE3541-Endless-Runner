@@ -37,12 +37,12 @@ public class Coin : MonoBehaviour
         for (int i = 0; i < 2; ++i)
         {
             var rotation = this.transform.rotation;
-            var rotationMod = Quaternion.AngleAxis(((i / 2.0f)) * 360, this.transform.up);
-            var direction = rotation * rotationMod * Vector3.forward * 1f;
+            //var rotationMod = Quaternion.AngleAxis(((i / 2.0f)) * 360, this.transform.up);
+            var direction = rotation * Vector3.right * 1f;
 
-            var ray = new Ray(this.transform.position, direction);
+            var ray = new Ray(this.transform.position + new Vector3(0, -3, 0), direction);
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, 1f))
+            if (Physics.Raycast(ray, out hitInfo, 5f))
             {
                 if (hitInfo.collider != null)
                 {
@@ -62,7 +62,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.collider.tag == "Car")
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+            Destroy(gameObject);
         }
         Debug.Log(gameObject.name + " in contact with " + collision.collider.name);
     }
@@ -81,10 +81,10 @@ public class Coin : MonoBehaviour
 
         
             var rotation = this.transform.rotation;
-            var direction = rotation * Vector3.forward * 1f;
+            var direction = rotation * Vector3.right * 5f;
 
-            var ray = new Ray(this.transform.position + new Vector3(2, 0, 0), -direction);
-            Debug.DrawRay(this.transform.position, direction, Color.black);
+            var ray = new Ray(new Vector3(this.transform.position.x, -3, this.transform.position.z), direction);
+            Debug.DrawRay(new Vector3(this.transform.position.x, -3, this.transform.position.z), direction, Color.black);
         
     }
 }
