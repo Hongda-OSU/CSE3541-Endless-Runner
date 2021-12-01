@@ -11,12 +11,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public GameObject gamePauseMenu;
     [SerializeField] public GameObject scoreText;
     [SerializeField] public GameObject mileText;
+    [SerializeField] public GameObject finalScoreText;
     public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
-    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText;
+    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, FinalScoreText;
     private int mile;
+    private int score;
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class MenuManager : MonoBehaviour
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         MileText = mileText.GetComponent<TMPro.TextMeshProUGUI>();
         ScoreText = scoreText.GetComponent<TMPro.TextMeshProUGUI>();
+        FinalScoreText = finalScoreText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
@@ -41,9 +44,11 @@ public class MenuManager : MonoBehaviour
     {
         if (gameOver)
         {
+            score = ScoreBoard.numberOfCoins;
             mileText.SetActive(false);
             gameOverPanel.SetActive(true);
-            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile}pts </color>");
+            ScoreText.SetText($"Total METERS RUNNED! <color=red>{mile}meters </color>");
+            FinalScoreText.SetText($"CURRENT SOCRE! <color=red>{score}pts </color>");
         }
         if (Input.GetMouseButtonDown(0) && !isClicked)
         {

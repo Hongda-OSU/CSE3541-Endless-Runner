@@ -1,16 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectManager : MonoBehaviour
+namespace EndLessRunner
 {
-    [SerializeField] private GameObject tileGenerator;
-    [SerializeField] private List<GameObject> tiles;
-    [SerializeField] private List<GameObject> obstacles;
-
-    void Start()
+    public class GameObjectManager : MonoBehaviour
     {
-        tileGenerator.GetComponent<TileGenerator>().tiles = tiles;
-        tileGenerator.GetComponent<TileGenerator>().obstacles = obstacles;
-    }
+        [SerializeField] private GameObject tileGenerator;
+        [SerializeField] private List<GameObject> tiles;
+        [SerializeField] private List<GameObject> obstacles;
 
+        void Start()
+        {
+            tileGenerator.GetComponent<TileGenerator>().tiles = tiles;
+            tileGenerator.GetComponent<TileGenerator>().obstacles = obstacles;
+        }
+
+    }
 }
+
