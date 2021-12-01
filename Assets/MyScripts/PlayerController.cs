@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Turning")]
     [SerializeField] private float trackDistance = 2.5f; //The distance between tracks
     private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
+    private float speedBetweenTrack = 5f;
 
     [Header("Sliding")]
     [SerializeField] private float slideDuration = 1f;
@@ -183,8 +184,8 @@ public class PlayerController : MonoBehaviour
         if (transform.position != targetPosition)
         {
             Vector3 diff = targetPosition - transform.position;
-            Vector3 moveDir = diff.normalized * 5f * Time.deltaTime;
-            if (moveDir.sqrMagnitude < diff.magnitude)
+            Vector3 moveDir = diff.normalized * speedBetweenTrack * Time.deltaTime;
+            if (moveDir.sqrMagnitude < diff.sqrMagnitude)
             {
                 controller.Move(moveDir);
             }
