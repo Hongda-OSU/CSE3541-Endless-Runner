@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Turning")]
     [SerializeField] private float trackDistance = 2.5f; //The distance between tracks
     private int currentTrack = 1; // 0:Left Middle, 1:Middle, 2:Right Middle
+    private float speedBetweenTrack = 5f;
 
     [Header("Sliding")]
     [SerializeField] private float slideDuration = 1f;
@@ -183,8 +184,8 @@ public class PlayerController : MonoBehaviour
         if (transform.position != targetPosition)
         {
             Vector3 diff = targetPosition - transform.position;
-            Vector3 moveDir = diff.normalized * 5f * Time.deltaTime;
-            if (moveDir.sqrMagnitude < diff.magnitude)
+            Vector3 moveDir = diff.normalized * speedBetweenTrack * Time.deltaTime;
+            if (moveDir.sqrMagnitude < diff.sqrMagnitude)
             {
                 controller.Move(moveDir);
             }
@@ -235,7 +236,7 @@ public class PlayerController : MonoBehaviour
     // Handle collision
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.collider.tag == "Fence")
+        if (hit.collider.tag == "Obstacle")
         {
             if (!isDying)
             {
@@ -243,13 +244,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (hit.collider.tag == "Car")
+        if (hit.collider.tag == "Car"|| hit.collider.tag == "Truck" || hit.collider.tag == "Bus")
         {
             RaycastHit hitter;
             // Collision from front
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out hitter, 1f))
             {
-                if (hitter.collider.gameObject.tag == "Car" && hit.transform.position.z > transform.position.z)
+                if (hitter.collider.gameObject.tag == hit.collider.tag && hit.transform.position.z > transform.position.z)
                 {
                     if (!isDying)
                     {
@@ -262,7 +263,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.left, out hitter, 1f))
                 {
-                    if (hitter.collider.gameObject.tag == "Car" && hitter.collider.name == hit.collider.name)
+                    if (hitter.collider.gameObject.tag == hit.collider.tag && hitter.collider.name == hit.collider.name)
                     {
                         if (!isDying)
                         {
@@ -276,7 +277,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.right, out hitter, 1f))
                 {
-                    if (hitter.collider.gameObject.tag == "Car" && hitter.collider.name == hit.collider.name)
+                    if (hitter.collider.gameObject.tag == hit.collider.tag && hitter.collider.name == hit.collider.name)
                     {
                         if (!isDying)
                         {
