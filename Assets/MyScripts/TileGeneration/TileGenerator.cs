@@ -18,6 +18,7 @@ public class TileGenerator : MonoBehaviour
     private int obstacleAmount;
     private int obstacleType;
     private Vector3 genPos;
+    private int generationAmount;
 
    [Header("Other Stuff")]
     [SerializeField] private GameObject character;
@@ -28,6 +29,7 @@ public class TileGenerator : MonoBehaviour
         generationCount = 0;
         tileAmount = tiles.Count;
         obstacleAmount = obstacles.Count;
+        generationAmount = 4;
         initialTile.name = $"#{generationCount} Tile Generated";
         obstacleHolder.name = $"#{generationCount} Obstacle Generated";
     }
@@ -52,7 +54,7 @@ public class TileGenerator : MonoBehaviour
             obstacleGeneratorInstance.name = $"#{generationCount} Obstacle Generated";
 
             Destroy(GameObject.Find($"#{generationCount - 2} Tile Generated"));
-            if (generationCount != 2)
+            if (generationCount > 2)
             {
                 Destroy(GameObject.Find($"#{generationCount - 2} Obstacle Generated"));
             }
@@ -65,27 +67,133 @@ public class TileGenerator : MonoBehaviour
 
     private void GenerateObstacle()
     {
-        // number of objects to generate, min 4 max 5
-        int generateAmount = Random.Range(5, 7);
+        // Generate on z = 137.5, 165, 192.5, 220
+        for (int i = 0; i < generationAmount; i++)
+        {
+            // number of objects to generate on that line, min 1 max 3
+            int obGenerateAmount = Random.Range(1, 4);
+            if (obGenerateAmount == 1)
+            {
+                GenerateOneObstacle(i);
+            }
+            else if (obGenerateAmount == 2)
+            {
+                GenerateTwoObstacles(i);
+            }
+            else if (obGenerateAmount == 3)
+            {
+                GenerateThreeObstacle(i);
+            }
+        }
+      
+    }
 
-        for (int i = 0; i < generateAmount; i++)
+    private void GenerateOneObstacle(int i)
+    {
+        obstacleType = Random.Range(0, obstacleAmount);
+        GameObject obstacle = obstacles[obstacleType];
+        // random position between three lanes, 0 left 1 middile 2 right
+        int ranLane = Random.Range(0, 3);
+        // position to be generated
+        if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+        {
+            genPos = new Vector3(-2.5f + ranLane * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+        }
+        else
+        {
+            genPos = new Vector3(-2.5f + ranLane * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+        }
+
+        // clone object from prefab file and assign it to newObject
+        obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
+    }
+
+    private void GenerateTwoObstacles(int i)
+    {
+        int rndForm = Random.Range(1, 4);
+        if (rndForm == 1)
+        {
+            // left, center
+            for (int j = 0; j < 2; j++)
+            {
+                obstacleType = Random.Range(0, obstacleAmount);
+                GameObject obstacle = obstacles[obstacleType];
+                // position to be generated
+                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                }
+                else
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                }
+
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
+            }
+        }
+        if (rndForm == 2)
+        {
+            // center, right
+            for (int j = 1; j < 3; j++)
+            {
+                obstacleType = Random.Range(0, obstacleAmount);
+                GameObject obstacle = obstacles[obstacleType];
+                // position to be generated
+                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                }
+                else
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                }
+
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
+            }
+        }
+        if (rndForm == 3)
+        {
+            // left, right
+            for (int j = 0; j < 3; j+=2)
+            {
+                obstacleType = Random.Range(0, obstacleAmount);
+                GameObject obstacle = obstacles[obstacleType];
+                // position to be generated
+                if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
+                }
+                else
+                {
+                    genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
+                }
+
+                // clone object from prefab file and assign it to newObject
+                obstacleInstance = Instantiate(obstacle, genPos, Quaternion.identity * Quaternion.Euler(0f, 90f, 0f));
+                obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
+            }
+        }
+    }
+
+    private void GenerateThreeObstacle(int i)
+    {
+        for(int j = 0; j < 3; j++)
         {
             obstacleType = Random.Range(0, obstacleAmount);
             GameObject obstacle = obstacles[obstacleType];
-            // random position between three lanes, 0 left 1 middile 2 right
-            int ranLane = Random.Range(0, 3);
             // position to be generated
-            if (obstacle.GetComponent<BoxCollider>().tag == "Truck")
+            if (obstacle.GetComponent<BoxCollider>().tag == "Truck" || obstacle.GetComponent<BoxCollider>().tag == "Bus")
             {
-                genPos = new Vector3(-2.5f + ranLane * 2.5f, 1.6f, generationCount * 120 + i * 20);
-            }
-            else if (obstacle.GetComponent<BoxCollider>().tag == "Bus")
-            {
-                genPos = new Vector3(-2.5f + ranLane * 2.5f, 1.6f, generationCount * 120 + i * 20);
+                genPos = new Vector3(-2.5f + j * 2.5f, 1.6f, generationCount * 110 + i * 27.5f);
             }
             else
             {
-                genPos = new Vector3(-2.5f + ranLane * 2.5f, 0.8f, generationCount * 120 + i * 20);
+                genPos = new Vector3(-2.5f + j * 2.5f, 0.8f, generationCount * 110 + i * 27.5f);
             }
 
             // clone object from prefab file and assign it to newObject
