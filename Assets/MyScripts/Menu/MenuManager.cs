@@ -9,11 +9,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public GameObject gameOverPanel;
     [SerializeField] public GameObject startingText;
     [SerializeField] public GameObject gamePauseMenu;
+    [SerializeField] public GameObject mileText;
     public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
-    private TMPro.TextMeshProUGUI UIText;
+    private TMPro.TextMeshProUGUI UIText, MileText;
 
     void Start()
     {
@@ -24,8 +25,10 @@ public class MenuManager : MonoBehaviour
         isClicked = false;
         gameOverPanel.SetActive(false);
         gamePauseMenu.SetActive(false);
+        mileText.SetActive(false);
         startingText.SetActive(true);
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
+        MileText = mileText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
@@ -35,6 +38,7 @@ public class MenuManager : MonoBehaviour
     {
         if (gameOver)
         {
+            mileText.SetActive(false);
             gameOverPanel.SetActive(true);
         }
         if (Input.GetMouseButtonDown(0) && !isClicked)
@@ -56,6 +60,12 @@ public class MenuManager : MonoBehaviour
         {
             gamePauseMenu.SetActive(false);
         }
+
+        if (mileText)
+        {
+            int mile = (int) character.transform.position.z;
+            MileText.SetText(mile.ToString() + " MILES");
+        }
     }
 
     IEnumerator StartCountDown()
@@ -69,6 +79,7 @@ public class MenuManager : MonoBehaviour
         }
         isGameStarted = true;
         animator.SetBool("IsDance", false);
+        mileText.SetActive(true);
         Destroy(startingText);
     }
 

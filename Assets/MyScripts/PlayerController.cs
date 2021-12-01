@@ -208,6 +208,10 @@ public class PlayerController : MonoBehaviour
     {
         isSliding = true;
         slideCount += 1;
+        if (slideCount >= 5)
+        {
+            slideCount = 1;
+        }
         animator.SetInteger("slideCount", slideCount);
         animator.SetBool("IsSliding", true);
         yield return new WaitForSeconds(0.25f / Time.timeScale);
@@ -218,11 +222,6 @@ public class PlayerController : MonoBehaviour
         controller.center = controllerCenter;
         controller.height = controllerHeight;
         isSliding = false;
-        if (slideCount == 5)
-        {
-            slideCount = 0;
-            animator.SetInteger("slideCount", slideCount);
-        }
     }
 
     private void Accelerate()
