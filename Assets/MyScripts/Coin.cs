@@ -40,7 +40,7 @@ public class Coin : MonoBehaviour
             var rotationMod = Quaternion.AngleAxis(((i / 18.0f)) * 360, this.transform.up);
             var direction = rotation * rotationMod * Vector3.forward * 1f;
 
-            var ray = new Ray(this.transform.position, direction);
+            var ray = new Ray(this.transform.position , direction);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 1f))
             {
