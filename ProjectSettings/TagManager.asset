@@ -7,7 +7,8 @@ TagManager:
   - Obstacle
   - Fence
   - Car
-  - GeneratePoint
+  - Truck
+  - Bus
   layers:
   - Default
   - TransparentFX

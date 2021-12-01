@@ -244,13 +244,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (hit.collider.tag == "Car")
+        if (hit.collider.tag == "Car"|| hit.collider.tag == "Truck" || hit.collider.tag == "Bus")
         {
             RaycastHit hitter;
             // Collision from front
             if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), transform.forward, out hitter, 1f))
             {
-                if (hitter.collider.gameObject.tag == "Car" && hit.transform.position.z > transform.position.z)
+                if (hitter.collider.gameObject.tag == hit.collider.tag && hit.transform.position.z > transform.position.z)
                 {
                     if (!isDying)
                     {
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.left, out hitter, 1f))
                 {
-                    if (hitter.collider.gameObject.tag == "Car" && hitter.collider.name == hit.collider.name)
+                    if (hitter.collider.gameObject.tag == hit.collider.tag && hitter.collider.name == hit.collider.name)
                     {
                         if (!isDying)
                         {
@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), Vector3.right, out hitter, 1f))
                 {
-                    if (hitter.collider.gameObject.tag == "Car" && hitter.collider.name == hit.collider.name)
+                    if (hitter.collider.gameObject.tag == hit.collider.tag && hitter.collider.name == hit.collider.name)
                     {
                         if (!isDying)
                         {
