@@ -34,13 +34,13 @@ public class Coin : MonoBehaviour
     {
         bool isDetected = false;
 
-        for (int i = 0; i < 18; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             var rotation = this.transform.rotation;
-            var rotationMod = Quaternion.AngleAxis(((i / 18.0f)) * 360, this.transform.up);
+            var rotationMod = Quaternion.AngleAxis(((i / 2.0f)) * 360, this.transform.up);
             var direction = rotation * rotationMod * Vector3.forward * 1f;
 
-            var ray = new Ray(this.transform.position , direction);
+            var ray = new Ray(this.transform.position, direction);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 1f))
             {
@@ -69,14 +69,22 @@ public class Coin : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < 18; ++i)
-        {
-            var rotation = this.transform.rotation;
-            var rotationMod = Quaternion.AngleAxis(((i / 18.0f)) * 360, this.transform.up);
-            var direction = rotation * rotationMod * Vector3.forward * 1f;
+        //for (int i = 0; i < 2; ++i)
+        //{
+        //    var rotation = this.transform.rotation;
+        //    var rotationMod = Quaternion.AngleAxis(((i / 2.0f)) * 360, this.transform.up);
+        //    var direction = rotation * rotationMod * Vector3.forward * 1f;
 
-            var ray = new Ray(this.transform.position, direction);
+        //    var ray = new Ray(this.transform.position + new Vector3(0,0,1), direction);
+        //    Debug.DrawRay(this.transform.position, direction, Color.black);
+        //}
+
+        
+            var rotation = this.transform.rotation;
+            var direction = rotation * Vector3.forward * 1f;
+
+            var ray = new Ray(this.transform.position + new Vector3(2, 0, 0), -direction);
             Debug.DrawRay(this.transform.position, direction, Color.black);
-        }
+        
     }
 }

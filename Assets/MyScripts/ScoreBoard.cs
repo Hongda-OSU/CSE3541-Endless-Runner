@@ -6,17 +6,19 @@ using UnityEngine.UI;
 public class ScoreBoard : MonoBehaviour
 {
     public static int numberOfCoins;
-    public Text coinsText;
+    [SerializeField] public GameObject scoreText;
+    private TMPro.TextMeshProUGUI ScoreText;
 
     // Start is called before the first frame update
     void Start()
     {
+        ScoreText = scoreText.GetComponent<TMPro.TextMeshProUGUI>();
         numberOfCoins = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        coinsText.text = "Score: " + numberOfCoins;
+        ScoreText.SetText("Score: " + numberOfCoins);
     }
 }
