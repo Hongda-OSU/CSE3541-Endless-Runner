@@ -39,6 +39,7 @@ public class MenuManager : MonoBehaviour
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
+        coinCount = 0;
     }
 
     void Update()
