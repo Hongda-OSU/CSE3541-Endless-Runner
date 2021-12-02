@@ -104,7 +104,7 @@ public class TileGenerator : MonoBehaviour
     {
         // random position between three lanes, 0 left 1 middile 2 right
         int ranLane = Random.Range(0, 3);
-        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + distance + i * 27.5f);
+        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.35f, generationCount * 110 + distance + i * 27.5f);
         coinInstance = Instantiate(coin, coinPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
         coinInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
     }

@@ -9872,7 +9872,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0694005, y: 1}
+    m_SensorSize: {x: 2.1088328, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -25155,7 +25155,7 @@ MonoBehaviour:
   CharactersPerDuration: 0
   Gradient:
     serializedVersion: 2
-    key0: {r: 0.6556604, g: 0.9351831, b: 1, a: 1}
+    key0: {r: 1, g: 0.9846331, b: 0, a: 1}
     key1: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     key2: {r: 1, g: 1, b: 1, a: 1}
     key3: {r: 0.804, g: 0.804, b: 0.804, a: 0}
@@ -25163,7 +25163,7 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 1, g: 0, b: 0.71241856, a: 0}
     key7: {r: 0, g: 0.4627451, b: 1, a: 0}
-    ctime0: 183
+    ctime0: 0
     ctime1: 32676
     ctime2: 65535
     ctime3: 38518

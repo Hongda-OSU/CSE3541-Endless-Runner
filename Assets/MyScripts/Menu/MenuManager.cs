@@ -48,7 +48,7 @@ public class MenuManager : MonoBehaviour
             mileText.SetActive(false);
             coinText.SetActive(false);
             gameOverPanel.SetActive(true);
-            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile}pts </color>");
+            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile+coinCount*5}pts </color>");
         }
         if (Input.GetMouseButtonDown(0) && !isClicked)
         {
