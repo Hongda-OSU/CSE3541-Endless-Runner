@@ -9872,7 +9872,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0779014, y: 1}
+    m_SensorSize: {x: 1.5121107, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20501,6 +20501,7 @@ MonoBehaviour:
   - {fileID: 190556, guid: 2a56de16a2082a34ba9ea844525e66f7, type: 3}
   - {fileID: 118212, guid: 6ea48a22d6fa93e449dc4f4933e43711, type: 3}
   - {fileID: 122224, guid: 5a3bb842b9dae844d8abde80e23c81ba, type: 3}
+  coin: {fileID: 0}
 --- !u!4 &1178775817
 Transform:
   m_ObjectHideFlags: 0
@@ -20513,7 +20514,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1179001816 stripped
 Transform:
@@ -27060,7 +27061,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1518714005 stripped
 Transform:
@@ -29555,7 +29556,7 @@ Transform:
   - {fileID: 1783099413}
   - {fileID: 643055907}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1686832528 stripped
 Transform:
@@ -31944,6 +31945,8 @@ MonoBehaviour:
   initialTile: {fileID: 1686112851}
   obstacleHolder: {fileID: 1517760946}
   obstacles: []
+  coinHolder: {fileID: 2013014227}
+  coin: {fileID: 0}
   character: {fileID: 1423911265}
 --- !u!4 &1849075585
 Transform:
@@ -31957,7 +31960,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1849443329 stripped
 Transform:
@@ -34574,6 +34577,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4340366666848756, guid: 1f5565c1b46deb046a4605b523c0169c, type: 3}
   m_PrefabInstance: {fileID: 1224754783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013014227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013014228}
+  m_Layer: 0
+  m_Name: CoinHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2013014228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013014227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2015261625
 PrefabInstance:
   m_ObjectHideFlags: 0
