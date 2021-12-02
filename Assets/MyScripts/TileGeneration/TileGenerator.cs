@@ -22,6 +22,7 @@ public class TileGenerator : MonoBehaviour
     [Header("Coin")]
     [SerializeField] private GameObject coinHolder;
     [SerializeField] public GameObject coin;
+    [SerializeField] private float distance = 8;
     private GameObject coinHolderInstance;
     private GameObject coinInstance;
     private int coinAmount;
@@ -98,6 +99,26 @@ public class TileGenerator : MonoBehaviour
             GenerateOneCoinLine(i);
         }
     }
+
+    private void GenerateOneCoinLine(int i)
+    {
+        // random position between three lanes, 0 left 1 middile 2 right
+        int ranLane = Random.Range(0, 3);
+        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + distance + i * 27.5f);
+        coinInstance = Instantiate(coin, coinPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+        coinInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
+    }
+
+    //private void GenerateTwoCoinLine(int i)
+    //{
+    //    // random position between three lanes, 0 left 1 middile 2 right
+    //    int ranLane = Random.Range(0, 3);
+    //    for (int j = 0; j < 3; j++)
+    //    {
+    //        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
+    //        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
+    //    }
+    //}
 
     private void GenerateObstacle()
     {
@@ -270,25 +291,5 @@ public class TileGenerator : MonoBehaviour
             obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Obstacle Generated").transform;
         }
     }
-
-    private void GenerateOneCoinLine(int i)
-    {
-        // random position between three lanes, 0 left 1 middile 2 right
-        int ranLane = Random.Range(0, 3);
-        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
-        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
-    }
-
-    //private void GenerateTwoCoinLine(int i)
-    //{
-    //    // random position between three lanes, 0 left 1 middile 2 right
-    //    int ranLane = Random.Range(0, 3);
-    //    for (int j = 0; j < 3; j++)
-    //    {
-    //        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
-    //        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
-    //    }
-    //}
-
 }
 

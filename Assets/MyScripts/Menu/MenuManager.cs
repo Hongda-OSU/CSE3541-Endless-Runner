@@ -11,12 +11,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public GameObject gamePauseMenu;
     [SerializeField] public GameObject scoreText;
     [SerializeField] public GameObject mileText;
+    [SerializeField] public GameObject coinText;
     public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
-    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText;
+    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, CoinText;
     private int mile;
+    public static int coinCount;
 
     void Start()
     {
@@ -28,10 +30,12 @@ public class MenuManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         gamePauseMenu.SetActive(false);
         mileText.SetActive(false);
+        coinText.SetActive(false);
         startingText.SetActive(true);
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         MileText = mileText.GetComponent<TMPro.TextMeshProUGUI>();
         ScoreText = scoreText.GetComponent<TMPro.TextMeshProUGUI>();
+        CoinText = coinText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
@@ -42,6 +46,7 @@ public class MenuManager : MonoBehaviour
         if (gameOver)
         {
             mileText.SetActive(false);
+            coinText.SetActive(false);
             gameOverPanel.SetActive(true);
             ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile}pts </color>");
         }
@@ -70,6 +75,11 @@ public class MenuManager : MonoBehaviour
             mile = (int) character.transform.position.z;
             MileText.SetText(mile.ToString() + " METERS");
         }
+
+        if (coinText)
+        {
+            CoinText.SetText(coinCount.ToString() + " COINS");
+        }
     }
 
     IEnumerator StartCountDown()
@@ -84,6 +94,7 @@ public class MenuManager : MonoBehaviour
         isGameStarted = true;
         animator.SetBool("IsDance", false);
         mileText.SetActive(true);
+        coinText.SetActive(true);
         Destroy(startingText);
     }
 
