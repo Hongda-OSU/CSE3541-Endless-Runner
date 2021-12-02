@@ -47,7 +47,7 @@ namespace EndLessRunner
                 {
                     xPosition = rightPos;
                 }
-                if(zPosition != 2 && zPosition != 5 && zPosition != 8)
+                if(zPosition != 2 && zPosition != 5 && zPosition != 7)
                 {
                     Vector3 coinPosition = new Vector3(xPosition, coins.transform.position.y, zPosition * 10 + TileGenerator.generationCount * 110);
                     GameObject.Instantiate<GameObject>(coins, coinPosition, coins.transform.rotation, Parent);
