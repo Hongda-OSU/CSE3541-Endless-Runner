@@ -41,7 +41,7 @@ public class Coin : MonoBehaviour
 
         var ray = new Ray(this.transform.position + new Vector3(0, -3, 0), direction);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, 5f))
+        if (Physics.Raycast(ray, out hitInfo, 10f))
         {
            if (hitInfo.collider != null)
            {
