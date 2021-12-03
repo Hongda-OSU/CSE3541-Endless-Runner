@@ -28,6 +28,10 @@ public class TileGenerator : MonoBehaviour
     private int coinAmount;
     private Vector3 coinPos;
 
+    [Header("Skybox")] 
+    [SerializeField] private Material skyboxDay;
+    [SerializeField] private Material skyboxNight;
+
     [Header("Other Stuff")]
     [SerializeField] private GameObject character;
     private int generationCount;
@@ -35,6 +39,10 @@ public class TileGenerator : MonoBehaviour
 
     void Start()
     {
+        if (Random.value > 0.5f)
+            RenderSettings.skybox = skyboxDay;
+        else
+            RenderSettings.skybox = skyboxNight;
         generationCount = 0;
         tileAmount = tiles.Count;
         obstacleAmount = obstacles.Count;

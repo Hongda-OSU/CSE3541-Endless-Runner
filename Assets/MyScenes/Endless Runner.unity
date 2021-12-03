@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 10873c82bf7820448adfa0915587f695, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -9872,7 +9872,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1088328, y: 1}
+    m_SensorSize: {x: 2.1541095, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13023,7 +13023,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -17108,7 +17108,6 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -17215,22 +17214,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a01aae7f656c8742bc8bde95adb665e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 19176590}
-  speed: 3
-  acceleration: 0.06
-  maxFollowSpeed: 15
 --- !u!4 &963471077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4855541271142042, guid: 957c0d3270bfd844aba900730d2fbad9, type: 3}
@@ -32140,6 +32123,8 @@ MonoBehaviour:
   coinHolder: {fileID: 2013014227}
   coin: {fileID: 0}
   distance: 8
+  skyboxDay: {fileID: 2100000, guid: 10873c82bf7820448adfa0915587f695, type: 2}
+  skyboxNight: {fileID: 2100000, guid: 7bb330361863cf8428a4f533d8dde57d, type: 2}
   character: {fileID: 1423911265}
 --- !u!4 &1849075585
 Transform:
