@@ -54,38 +54,52 @@ public class TileGenerator : MonoBehaviour
 
     void Update()
     {
-        // detect if player has reached position for spawning next tiles
-        if (character.transform.position.z > generationCount * 110 + 10)
+        // detect if player has reached position for spawning next tiles, first generate 2 tiles
+        if (character.transform.position.z > 10 && generationCount == 0)
         {
-            // increment counter until player gets to next position to spawn
-            generationCount++;
-            tileType = Random.Range(0, tileAmount);
-
-            // initialize the tile
-            tileInstance = Instantiate(tiles[tileType], new Vector3(tiles[tileType].transform.position.x, 0, generationCount * 110),
-                tiles[tileType].transform.rotation);
-
-            obstacleHolderInstance = Instantiate(obstacleHolder, new Vector3(obstacleHolder.transform.position.x, 0, generationCount * 110),
-                obstacleHolder.transform.rotation);
-
-            coinHolderInstance = Instantiate(coinHolder, new Vector3(coinHolder.transform.position.x, 0, generationCount * 110),
-                coinHolder.transform.rotation);
-
-            tileInstance.name = $"#{generationCount} Tile Generated";
-            obstacleHolderInstance.name = $"#{generationCount} Obstacle Generated";
-            coinHolderInstance.name = $"#{generationCount} Coin Generated";
-
-            Destroy(GameObject.Find($"#{generationCount - 2} Tile Generated"));
-            if (generationCount > 2)
+            for (int i = 0; i < 2; i++)
             {
-                Destroy(GameObject.Find($"#{generationCount - 2} Obstacle Generated"));
-                Destroy(GameObject.Find($"#{generationCount - 2} Coin Generated"));
+                GenerateTile();
             }
-            if (generationCount >= 1)
-            {
-                GenerateObstacle();
-                GenerateCoin();
-            }
+        }
+        // detect if player has reached position for spawning next tiles (after first generation, i = 2, player at 120, gcount++, delete generation count 0)
+        if (character.transform.position.z > (generationCount - 1) * 110 + 10 && generationCount > 0)
+        {
+            GenerateTile();
+        }
+    }
+
+    private void GenerateTile()
+    {
+        // increment counter until player gets to next position to spawn
+        generationCount++;
+        tileType = Random.Range(0, tileAmount);
+
+        // initialize the tile
+        tileInstance = Instantiate(tiles[tileType], new Vector3(tiles[tileType].transform.position.x, 0, generationCount * 110),
+            tiles[tileType].transform.rotation);
+
+        obstacleHolderInstance = Instantiate(obstacleHolder, new Vector3(obstacleHolder.transform.position.x, 0, generationCount * 110),
+            obstacleHolder.transform.rotation);
+
+        coinHolderInstance = Instantiate(coinHolder, new Vector3(coinHolder.transform.position.x, 0, generationCount * 110),
+            coinHolder.transform.rotation);
+
+        tileInstance.name = $"#{generationCount} Tile Generated";
+        obstacleHolderInstance.name = $"#{generationCount} Obstacle Generated";
+        coinHolderInstance.name = $"#{generationCount} Coin Generated";
+
+        // -3 because 2 tiles are generate first (-2 if generate one by one)
+        Destroy(GameObject.Find($"#{generationCount - 3} Tile Generated"));
+        if (generationCount > 3)
+        {
+            Destroy(GameObject.Find($"#{generationCount - 3} Obstacle Generated"));
+            Destroy(GameObject.Find($"#{generationCount - 3} Coin Generated"));
+        }
+        if (generationCount >= 1)
+        {
+            GenerateObstacle();
+            GenerateCoin();
         }
     }
 
