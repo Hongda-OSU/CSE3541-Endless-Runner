@@ -11,14 +11,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public GameObject gamePauseMenu;
     [SerializeField] public GameObject scoreText;
     [SerializeField] public GameObject mileText;
-    [SerializeField] public GameObject coinText;
+    [SerializeField] public GameObject collectionText;
     public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
-    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, CoinText;
+    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, CollectionText;
     private int mile;
-    public static int coinCount;
+    public static int collectionCount;
 
     void Start()
     {
@@ -30,16 +30,16 @@ public class MenuManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         gamePauseMenu.SetActive(false);
         mileText.SetActive(false);
-        coinText.SetActive(false);
+        collectionText.SetActive(false);
         startingText.SetActive(true);
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         MileText = mileText.GetComponent<TMPro.TextMeshProUGUI>();
         ScoreText = scoreText.GetComponent<TMPro.TextMeshProUGUI>();
-        CoinText = coinText.GetComponent<TMPro.TextMeshProUGUI>();
+        CollectionText = collectionText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
-        coinCount = 0;
+        collectionCount = 0;
     }
 
     void Update()
@@ -47,9 +47,9 @@ public class MenuManager : MonoBehaviour
         if (gameOver)
         {
             mileText.SetActive(false);
-            coinText.SetActive(false);
+            collectionText.SetActive(false);
             gameOverPanel.SetActive(true);
-            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile+coinCount*5}pts </color>");
+            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile+collectionCount*5}pts </color>");
         }
         if (Input.GetMouseButtonDown(0) && !isClicked)
         {
@@ -77,9 +77,17 @@ public class MenuManager : MonoBehaviour
             MileText.SetText(mile.ToString() + " METERS");
         }
 
-        if (coinText)
+        if (collectionText)
         {
-            CoinText.SetText(coinCount.ToString() + " COINS");
+            if (collectionCount == 0)
+            {
+                CollectionText.SetText(collectionCount.ToString() + " Scores");
+            }
+            else
+            {
+                CollectionText.SetText("+ " + collectionCount.ToString() + " Scores");
+            }
+            
         }
     }
 
@@ -95,7 +103,7 @@ public class MenuManager : MonoBehaviour
         isGameStarted = true;
         animator.SetBool("IsDance", false);
         mileText.SetActive(true);
-        coinText.SetActive(true);
+        collectionText.SetActive(true);
         Destroy(startingText);
     }
 

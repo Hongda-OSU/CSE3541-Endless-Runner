@@ -9872,7 +9872,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.093178, y: 1}
+    m_SensorSize: {x: 2.1119874, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9894,7 +9894,7 @@ Transform:
   m_Children:
   - {fileID: 1942723634}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!4 &574015801 stripped
 Transform:
@@ -19163,7 +19163,7 @@ MonoBehaviour:
   gamePauseMenu: {fileID: 44171197}
   scoreText: {fileID: 358149336}
   mileText: {fileID: 620901314}
-  coinText: {fileID: 1409513759}
+  collectionText: {fileID: 1409513759}
 --- !u!4 &1115790626
 Transform:
   m_ObjectHideFlags: 0
@@ -19176,7 +19176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1116000383
 PrefabInstance:
@@ -20305,7 +20305,7 @@ RectTransform:
   - {fileID: 620901315}
   - {fileID: 1409513760}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -20486,7 +20486,18 @@ MonoBehaviour:
   - {fileID: 190556, guid: 2a56de16a2082a34ba9ea844525e66f7, type: 3}
   - {fileID: 118212, guid: 6ea48a22d6fa93e449dc4f4933e43711, type: 3}
   - {fileID: 122224, guid: 5a3bb842b9dae844d8abde80e23c81ba, type: 3}
-  coin: {fileID: 2889250418756076609, guid: 7f81a1b7538143d4aab01f77b1a93ec5, type: 3}
+  - {fileID: 117208, guid: ec75f0598d440a24ca7851d04ed162ac, type: 3}
+  - {fileID: 117208, guid: 2594e56941f72874cac6db63b918f286, type: 3}
+  - {fileID: 117208, guid: ce32ebe60cf48eb48b46871ccb5da7b1, type: 3}
+  collections:
+  - {fileID: 128226, guid: b239d49cb52172449a6dc89fb4c5fdde, type: 3}
+  - {fileID: 108378, guid: 0fb1a7c9fc8f6c64cba51567b3f1071a, type: 3}
+  - {fileID: 118284, guid: 336c6484c100b064d87f665900b93c4b, type: 3}
+  - {fileID: 188848, guid: e42d808757c74224fac47ed214dd75c0, type: 3}
+  - {fileID: 110992, guid: be36a658cb97fa04795bef1aee1afa52, type: 3}
+  - {fileID: 140660, guid: 24a039db362411542a23c80c639540b3, type: 3}
+  - {fileID: 155166, guid: 524cf9abdbfc43b49b8fe16181c69a9d, type: 3}
+  - {fileID: 102834, guid: c7c1a8566c77a5842a78d966619f300a, type: 3}
 --- !u!4 &1178775817
 Transform:
   m_ObjectHideFlags: 0
@@ -25094,7 +25105,7 @@ GameObject:
   - component: {fileID: 1409513762}
   - component: {fileID: 1409513761}
   m_Layer: 5
-  m_Name: CoinText
+  m_Name: CollectionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25116,7 +25127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 64, y: 335}
+  m_AnchoredPosition: {x: 80, y: 335}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1409513761
@@ -29727,7 +29738,7 @@ Transform:
   - {fileID: 1783099413}
   - {fileID: 643055907}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1686832528 stripped
 Transform:
@@ -30153,7 +30164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1715579245 stripped
 Transform:
@@ -30692,7 +30703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1751995479 stripped
 Transform:
@@ -32120,8 +32131,8 @@ MonoBehaviour:
   initialTile: {fileID: 1686112851}
   obstacleHolder: {fileID: 1517760946}
   obstacles: []
-  coinHolder: {fileID: 2013014227}
-  coin: {fileID: 0}
+  collections: []
+  collectionHolder: {fileID: 2013014227}
   distance: 8
   skyboxDay: {fileID: 2100000, guid: 10873c82bf7820448adfa0915587f695, type: 2}
   skyboxNight: {fileID: 2100000, guid: 7bb330361863cf8428a4f533d8dde57d, type: 2}
@@ -34765,7 +34776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013014228}
   m_Layer: 0
-  m_Name: CoinHolder
+  m_Name: CollectionHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35425,7 +35436,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2078174420
 PrefabInstance:

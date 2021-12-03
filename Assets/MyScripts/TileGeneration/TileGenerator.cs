@@ -19,14 +19,15 @@ public class TileGenerator : MonoBehaviour
     private int obstacleType;
     private Vector3 genPos;
 
-    [Header("Coin")]
-    [SerializeField] private GameObject coinHolder;
-    [SerializeField] public GameObject coin;
+    [Header("Collection")] 
+    [SerializeField] public List<GameObject> collections;
+    [SerializeField] private GameObject collectionHolder;
     [SerializeField] private float distance = 8;
-    private GameObject coinHolderInstance;
-    private GameObject coinInstance;
-    private int coinAmount;
-    private Vector3 coinPos;
+    private GameObject collectionHolderInstance;
+    private GameObject collectionInstance;
+    private int collectionType;
+    private int collectionAmount;
+    private Vector3 collectionPos;
 
     [Header("Skybox")] 
     [SerializeField] private Material skyboxDay;
@@ -46,10 +47,11 @@ public class TileGenerator : MonoBehaviour
         generationCount = 0;
         tileAmount = tiles.Count;
         obstacleAmount = obstacles.Count;
+        collectionAmount = collections.Count;
         generationAmount = 4;
         initialTile.name = $"#{generationCount} Tile Generated";
         obstacleHolder.name = $"#{generationCount} Obstacle Generated";
-        coinHolder.name = $"#{generationCount} Coin Generated";
+        collectionHolder.name = $"#{generationCount} Coin Generated";
     }
 
     void Update()
@@ -82,19 +84,19 @@ public class TileGenerator : MonoBehaviour
         obstacleHolderInstance = Instantiate(obstacleHolder, new Vector3(obstacleHolder.transform.position.x, 0, generationCount * 110),
             obstacleHolder.transform.rotation);
 
-        coinHolderInstance = Instantiate(coinHolder, new Vector3(coinHolder.transform.position.x, 0, generationCount * 110),
-            coinHolder.transform.rotation);
+        collectionHolderInstance = Instantiate(collectionHolder, new Vector3(collectionHolder.transform.position.x, 0, generationCount * 110),
+            collectionHolder.transform.rotation);
 
         tileInstance.name = $"#{generationCount} Tile Generated";
         obstacleHolderInstance.name = $"#{generationCount} Obstacle Generated";
-        coinHolderInstance.name = $"#{generationCount} Coin Generated";
+        collectionHolderInstance.name = $"#{generationCount} Collection Generated";
 
         // -3 because 2 tiles are generate first (-2 if generate one by one)
         Destroy(GameObject.Find($"#{generationCount - 3} Tile Generated"));
         if (generationCount > 3)
         {
             Destroy(GameObject.Find($"#{generationCount - 3} Obstacle Generated"));
-            Destroy(GameObject.Find($"#{generationCount - 3} Coin Generated"));
+            Destroy(GameObject.Find($"#{generationCount - 3} Collection Generated"));
         }
         if (generationCount >= 1)
         {
@@ -126,9 +128,13 @@ public class TileGenerator : MonoBehaviour
     {
         // random position between three lanes, 0 left 1 middile 2 right
         int ranLane = Random.Range(0, 3);
-        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.35f, generationCount * 110 + distance + i * 27.5f);
-        coinInstance = Instantiate(coin, coinPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
-        coinInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
+        for (int j = 0; j < 3; j++)
+        {
+            collectionType = Random.Range(0, collectionAmount);
+            collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.4f, generationCount * 110 + distance + i * 27.5f + j * 3.33f);
+            collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+            collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+        }
     }
 
     //private void GenerateTwoCoinLine(int i)
@@ -137,7 +143,7 @@ public class TileGenerator : MonoBehaviour
     //    int ranLane = Random.Range(0, 3);
     //    for (int j = 0; j < 3; j++)
     //    {
-    //        coinPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
+    //        collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
     //        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
     //    }
     //}
