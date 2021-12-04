@@ -32,6 +32,8 @@ public class TileGenerator : MonoBehaviour
     [Header("Skybox")] 
     [SerializeField] private Material skyboxDay;
     [SerializeField] private Material skyboxNight;
+    [SerializeField] private Material skyboxAfternoon;
+    [SerializeField] private Material skyboxLateNight;
 
     [Header("Other Stuff")]
     [SerializeField] private GameObject character;
@@ -40,7 +42,8 @@ public class TileGenerator : MonoBehaviour
 
     void Start()
     {
-        if (Random.value > 0.5f)
+        // could modify skybox
+        if (Random.value > 0.75f)
             RenderSettings.skybox = skyboxDay;
         else
             RenderSettings.skybox = skyboxNight;
@@ -101,52 +104,100 @@ public class TileGenerator : MonoBehaviour
         if (generationCount >= 1)
         {
             GenerateObstacle();
-            GenerateCoin();
+            GenerateCollection();
         }
     }
 
-    private void GenerateCoin()
+    private void GenerateCollection()
     {
         // Generate on z = 145, 172.5, 200, 227.5 (#tileG * 110 + 10 + 27.5 *i)
         for (int i = 0; i < generationAmount; i++)
         {
             // number of objects to generate on that line, min 1 max 2
-            //int coinGenerateAmount = Random.Range(1, 3);
-            //if (coinGenerateAmount == 1)
+            //if (Random.value > 0.2)
             //{
-            //    GenerateOneCoinLine(i);
+            //    GenerateOneCollectionLine(i);
             //}
-            //else if (coinGenerateAmount == 2)
+            //else
             //{
-            //    GenerateTwoCoinLine(i);
+            //    GenerateTwoCollectionLine(i);
             //}
-            GenerateOneCoinLine(i);
+            GenerateOneCollectionLine(i);
         }
     }
 
-    private void GenerateOneCoinLine(int i)
+    private void GenerateOneCollectionLine(int i)
     {
         // random position between three lanes, 0 left 1 middile 2 right
         int ranLane = Random.Range(0, 3);
-        for (int j = 0; j < 3; j++)
+        if (Random.value > 0.25f)
         {
-            collectionType = Random.Range(0, collectionAmount);
-            collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.4f, generationCount * 110 + distance + i * 27.5f + j * 3.33f);
-            collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
-            collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+            for (int j = 0; j < 3; j++)
+            {
+                collectionType = Random.Range(0, collectionAmount);
+                collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.4f, generationCount * 110 + distance + i * 29.5f + j * 3.33f);
+                collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+            }
+        }else
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                collectionType = Random.Range(0, collectionAmount);
+                collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.4f, generationCount * 110 + distance + i * 28.5f + j * 3f);
+                collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+            }
         }
     }
 
-    //private void GenerateTwoCoinLine(int i)
-    //{
-    //    // random position between three lanes, 0 left 1 middile 2 right
-    //    int ranLane = Random.Range(0, 3);
-    //    for (int j = 0; j < 3; j++)
-    //    {
-    //        collectionPos = new Vector3(-2.5f + ranLane * 2.5f, 0.5f, generationCount * 110 + 10 + i * 27.5f);
-    //        obstacleInstance.transform.parent = GameObject.Find($"#{generationCount} Coin Generated").transform;
-    //    }
-    //}
+    private void GenerateTwoCollectionLine(int i)
+    {
+        // random position between three lanes, 0 left 1 middile 2 right
+        int rndForm = Random.Range(1, 4);
+        if (rndForm == 1)
+        {
+            // left, center
+            for (int k = 0; k < 2; k++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    collectionType = Random.Range(0, collectionAmount);
+                    collectionPos = new Vector3(-2.5f + k * 2.5f, 0.4f, generationCount * 110 + distance + i * 29.5f + j * 3.33f);
+                    collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                    collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+                }
+            }
+        }
+        if (rndForm == 2)
+        {
+            // center, right
+            for (int k = 0; k < 2; k++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    collectionType = Random.Range(0, collectionAmount);
+                    collectionPos = new Vector3(-2.5f + k * 2.5f, 0.4f, generationCount * 110 + distance + i * 29.5f + j * 3.33f);
+                    collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                    collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+                }
+            }
+        }
+        if (rndForm == 3)
+        {
+            // left, right
+            for (int k = 0; k < 2; k++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    collectionType = Random.Range(0, collectionAmount);
+                    collectionPos = new Vector3(-2.5f + k * 2.5f, 0.4f, generationCount * 110 + distance + i * 29.5f + j * 3.33f);
+                    collectionInstance = Instantiate(collections[collectionType], collectionPos, Quaternion.identity * Quaternion.Euler(0f, 0f, 0f));
+                    collectionInstance.transform.parent = GameObject.Find($"#{generationCount} Collection Generated").transform;
+                }
+            }
+        }
+    }
 
     private void GenerateObstacle()
     {

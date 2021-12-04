@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float maxSpeed = 15f;
     [SerializeField] private float acceleration = 0.05f;
     private Vector3 currentMovement;
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         inputScheme = new PlayerInputs();
         quitHandler = new QuitHandler(inputScheme.Player.Quit);
         setUpJumpVariables();
+        FindObjectOfType<AudioManager>().Play("GameStart");
     }
 
     void OnEnable()
@@ -298,5 +299,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("dyingCount", dyingCount);
         animator.SetTrigger("IsDying");
         isDying = true;
+        FindObjectOfType<AudioManager>().Stop("MainTheme");
+        FindObjectOfType<AudioManager>().Play("GameOver");
     }
 }

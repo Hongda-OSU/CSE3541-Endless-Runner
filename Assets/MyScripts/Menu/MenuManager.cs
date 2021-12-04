@@ -98,8 +98,13 @@ public class MenuManager : MonoBehaviour
         {
             UIText.SetText(counter.ToString()); // how to modify the text in TextMeshPro object
             yield return new WaitForSeconds(1);
+            if (counter == 2)
+            {
+                FindObjectOfType<AudioManager>().Play("MainTheme");
+            }
             counter--;
         }
+        FindObjectOfType<AudioManager>().Stop("GameStart");
         isGameStarted = true;
         animator.SetBool("IsDance", false);
         mileText.SetActive(true);
