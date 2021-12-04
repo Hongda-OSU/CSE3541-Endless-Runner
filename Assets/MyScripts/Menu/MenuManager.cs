@@ -11,14 +11,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public GameObject gamePauseMenu;
     [SerializeField] public GameObject scoreText;
     [SerializeField] public GameObject mileText;
-    [SerializeField] public GameObject finalScoreText;
+    [SerializeField] public GameObject collectionText;
     public static bool isGameStarted, isGamePaused, isPressed;
     public static bool gameOver;
     private bool isClicked;
     private Animator animator;
-    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, FinalScoreText;
+    private TMPro.TextMeshProUGUI UIText, MileText, ScoreText, CollectionText;
     private int mile;
-    private int score;
+    public static int collectionCount;
 
     void Start()
     {
@@ -30,25 +30,26 @@ public class MenuManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         gamePauseMenu.SetActive(false);
         mileText.SetActive(false);
+        collectionText.SetActive(false);
         startingText.SetActive(true);
         UIText = startingText.GetComponent<TMPro.TextMeshProUGUI>(); // how to reference TextMeshPro object
         MileText = mileText.GetComponent<TMPro.TextMeshProUGUI>();
         ScoreText = scoreText.GetComponent<TMPro.TextMeshProUGUI>();
-        FinalScoreText = finalScoreText.GetComponent<TMPro.TextMeshProUGUI>();
+        CollectionText = collectionText.GetComponent<TMPro.TextMeshProUGUI>();
         animator = character.GetComponent<Animator>();
         animator.SetBool("IsDance", true);
         animator.SetInteger("danceCount", Random.Range(1,6));
+        collectionCount = 0;
     }
 
     void Update()
     {
         if (gameOver)
         {
-            score = ScoreBoard.numberOfCoins;
             mileText.SetActive(false);
+            collectionText.SetActive(false);
             gameOverPanel.SetActive(true);
-            ScoreText.SetText($"Total METERS RUNNED! <color=red>{mile}meters </color>");
-            FinalScoreText.SetText($"CURRENT SOCRE! <color=red>{score}pts </color>");
+            ScoreText.SetText($"CURRENT SOCRE! <color=red>{mile+collectionCount*5}pts </color>");
         }
         if (Input.GetMouseButtonDown(0) && !isClicked)
         {
@@ -75,6 +76,19 @@ public class MenuManager : MonoBehaviour
             mile = (int) character.transform.position.z;
             MileText.SetText(mile.ToString() + " METERS");
         }
+
+        if (collectionText)
+        {
+            if (collectionCount == 0)
+            {
+                CollectionText.SetText(collectionCount.ToString() + " Scores");
+            }
+            else
+            {
+                CollectionText.SetText("+ " + collectionCount.ToString() + " Scores");
+            }
+            
+        }
     }
 
     IEnumerator StartCountDown()
@@ -84,11 +98,17 @@ public class MenuManager : MonoBehaviour
         {
             UIText.SetText(counter.ToString()); // how to modify the text in TextMeshPro object
             yield return new WaitForSeconds(1);
+            if (counter == 2)
+            {
+                FindObjectOfType<AudioManager>().Play("MainTheme");
+            }
             counter--;
         }
+        FindObjectOfType<AudioManager>().Stop("GameStart");
         isGameStarted = true;
         animator.SetBool("IsDance", false);
         mileText.SetActive(true);
+        collectionText.SetActive(true);
         Destroy(startingText);
     }
 

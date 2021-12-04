@@ -35,6 +35,9 @@ public class GameEvents : MonoBehaviour
     public void StartOver()
     {
         Time.timeScale = 1;
+        FindObjectOfType<AudioManager>().Stop("GameOver");
+        FindObjectOfType<AudioManager>().Stop("MainTheme");
+        FindObjectOfType<AudioManager>().Play("GameStart");
         SceneManager.LoadScene("Endless Runner");
     }
 
