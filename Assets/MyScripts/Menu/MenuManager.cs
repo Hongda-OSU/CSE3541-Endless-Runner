@@ -100,11 +100,18 @@ public class MenuManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (counter == 2)
             {
-                FindObjectOfType<AudioManager>().Play("MainTheme");
+                if (AudioManager.instance != null)
+                {
+                    FindObjectOfType<AudioManager>().Play("MainTheme");
+                }
             }
             counter--;
         }
-        FindObjectOfType<AudioManager>().Stop("GameStart");
+
+        if (AudioManager.instance != null)
+        {
+            FindObjectOfType<AudioManager>().Stop("GameStart");
+        }
         isGameStarted = true;
         animator.SetBool("IsDance", false);
         mileText.SetActive(true);

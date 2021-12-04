@@ -11,7 +11,10 @@ public class PlayerCollection : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            FindObjectOfType<AudioManager>().Play("Collect");
+            if (AudioManager.instance != null)
+            {
+                FindObjectOfType<AudioManager>().Play("Collect");
+            }
             MenuManager.collectionCount += 1;
             Destroy(gameObject);
         }
