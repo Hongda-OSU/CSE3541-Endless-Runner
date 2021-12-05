@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -9,43 +10,34 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        instance = this;
+        foreach (var s in sounds)
         {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        foreach (var sound in sounds)
-        {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-            sound.source.loop = sound.loop;
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
         }
     }
 
     public void Stop(string name)
     {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
-        if (sound == null)
+        Sound s = Array.Find(sounds, s => s.name == name);
+        if (s == null)
         {
             return; // No sound found
         }
-        sound.source.Stop();
+        s.source.Stop();
     }
 
     public void Play(string name)
     {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
-        if (sound == null)
+        Sound s = Array.Find(sounds, s => s.name == name);
+        if (s == null)
         {
             return; // No sound found
         }
-        sound.source.Play();
+        s.source.Play();
     }
 }

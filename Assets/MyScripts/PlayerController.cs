@@ -47,10 +47,7 @@ public class PlayerController : MonoBehaviour
         inputScheme = new PlayerInputs();
         quitHandler = new QuitHandler(inputScheme.Player.Quit);
         setUpJumpVariables();
-        if (AudioManager.instance != null)
-        {
-            FindObjectOfType<AudioManager>().Play("GameStart");
-        }
+        AudioManager.instance.Play("GameStart");
     }
 
     void OnEnable()
