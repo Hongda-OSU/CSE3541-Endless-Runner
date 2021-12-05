@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("dyingCount", dyingCount);
         animator.SetTrigger("IsDying");
         isDying = true;
-        FindObjectOfType<AudioManager>().Stop("MainTheme");
-        FindObjectOfType<AudioManager>().Play("GameOver");
+        AudioManager.instance.Stop("MainTheme");
+        AudioManager.instance.Play("GameOver");
     }
 }
